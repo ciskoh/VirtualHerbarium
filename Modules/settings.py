@@ -3,6 +3,10 @@
 """Setting for VirtualHerbarium"""
 
 
-inputPath='/home/matt/Dropbox/github/VirtualHerbarium/Tests/TestInputFile.csv'
+inputPath = '/home/matt/Dropbox/github/VirtualHerbarium/Tests/TestInputFile.csv'
 
-nameCol= 'PlantName'
+colName = 'PlantName'
+
+
+# wikipedia Settings
+wikiTitles = ["Summary", "Description", "Uses"]

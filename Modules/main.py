@@ -17,28 +17,37 @@ from collections import OrderedDict
 # ---------Parameters
 inputPath = '/home/matt/Dropbox/github/VirtualHerbarium/Tests/TestInputFile.csv'
 # get input from csv file
-inputDicList=fn.getInputAsDictionary(st.inputPath, nameCol=st.nameCol)
+inputDicList=fn.getInputAsDictionary(st.inputPath, colName=st.colName)
 plantObjList=[ cl.Plant(i) for i in inputDicList]
-
+# [i.__str__() for i in plantObjList]
 
 #     lineCount = 0
 #     # get list of plant names
-plantNameList = list()
-for row in csv_reader:
-    plantNameList.append(row['PlantName'])
-print(plantNameList)
-breakpoint
 
-# for each plant name
+
 # just for testing
-currentName = plantNameList[1]
-print(currentName)
+currentPlant = plantObjList[1]
+
+# webscrapeWikipedia
+wikiText = cl.TextContainer('wikipedia', currentPlant.name,  )
+print(wikiText)
+
 # get wikipedia page
+def checkBeforeScraping(wikiText):
+    for i in ['journalName', 'plantName', 'sectionTitles']:
+        assert(getattr(wikiText, i )), f"{i} is still missing, cannot scrape wikipedia"
+
+checkBeforeScraping(wikiText)
+i=wikiText.plantName
+
 wiki_wiki = wiki.Wikipedia('en')
-page_py = wiki_wiki.page(currentName)
+page_py = wiki_wiki.page(wikiText.plantName)
 # select sections
 
-sectionsTitle = [i.title for i in page_py.sections]
+sectionsTitle = [i.title for i in page_py.section]
+a= page_py.sections[-3] 
+c=(a.text)
+dir(page_py)
 
 chosenTitle = "Uses"
 chosenTitleIndex = sectionsTitle.index(chosenTitle)

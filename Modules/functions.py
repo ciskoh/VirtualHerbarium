@@ -5,7 +5,7 @@ import sys
 import settings as st
 from collections import OrderedDict
 
-def getInputAsDictionary(inputPath, nameCol=st.nameCol):
+def getInputAsDictionary(inputPath, colName=st.colName):
     """read csv file and output a standard dictionary performing some checks"""
     with open(inputPath) as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -13,15 +13,15 @@ def getInputAsDictionary(inputPath, nameCol=st.nameCol):
         #test if input is good
         for row in csv_reader:
             try:
-                row[nameCol]
+                row[colName]
             except KeyError:
                 print("no PlantName column in input file %s" % inputPath)
                 return
-            assert(row[nameCol] != ""), "missing plant name!"
+            assert(row[colName] != ""), "missing p§lant name!"
             # transform output to standard dictionary
             normalDic=dict(OrderedDict(row))
             finalDic.append(normalDic)
         return(finalDic)
 
-def __name__():
-    print(getInputAsDictionary(st.inputPath, nameCol=st.nameCol))
+if __name__ == "__main__":
+    print(getInputAsDictionary(st.inputPath, colName=st.colName))

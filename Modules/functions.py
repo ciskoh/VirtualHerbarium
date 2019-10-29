@@ -22,6 +22,3 @@ def getInputAsDictionary(inputPath, colName=st.colName):
             normalDic=dict(OrderedDict(row))
             finalDic.append(normalDic)
         return(finalDic)
-
-if __name__ == "__main__":
-    print(getInputAsDictionary(st.inputPath, colName=st.colName))

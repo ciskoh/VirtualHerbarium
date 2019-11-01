@@ -18,12 +18,12 @@ outputPath="/tmp"
 
 # wikipedia Settings
     # section titles to scrape
-wikiTitles = ["Summary", "Description", "Uses"]
+wikiSectionTitles = ["Summary", "Description", "Uses"]
 
 attrList = ["journalName", "plantName", "sectionTitles"]
 #------------------functions
 
-def getInputAsDictionary(inputPath, colName=st.colName):
+def getInputAsDictionary(inputPath, colName=colName):
     """read csv file and output a standard dictionary performing some checks"""
     with open(inputPath) as csv_file:
         csv_reader = csv.DictReader(csv_file, delimiter=',')
@@ -93,18 +93,18 @@ class TextContainer:
 
 
 if __name__ == "__main__":
-    print(getInputAsDictionary(st.inputPath, colName=st.colName))
-    if __name__ == "__main__":
-        # class Plant tests
-        print("test with object from str " + Plant('testClassPlant').__str__())
-        tDic = {"rer": "balbla", "der": 2}
-        print("test with object from dict " + Plant(tDic).__str__())
-        print("test with no inputs " + Plant().__str__())
+    print(getInputAsDictionary(inputPath, colName=colName))
 
-        # class TextContainer
-        tSecs = ["aa", "bb", "cc"]
-        test3 = TextContainer("wikipedia", "Lablab purpureus", tSecs)
-        test3.__dict__
-        plantName="dddurpureus"
-        test3.webscrapeWikipedia()
-        print(test3.wikiPage)
+    # class Plant tests
+    print("test with object from str " + Plant('testClassPlant').__str__())
+    tDic = {"rer": "balbla", "der": 2}
+    print("test with object from dict " + Plant(tDic).__str__())
+    print("test with no inputs " + Plant().__str__())
+    # class TextContainer
+    tSecs = ["aa", "bb", "cc"]
+    test3 = TextContainer("wikipedia", "Lablab purpureus", tSecs)
+    test3.__dict__
+    plantName="dddurpureus"
+    test3.webscrapeWikipedia()
+    print(test3.wikiPage)
+    self=test3

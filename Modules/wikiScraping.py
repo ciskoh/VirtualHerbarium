@@ -9,6 +9,7 @@ import wikipediaapi as wiki
 
 class wikiTextContainer(TextContainer):
     """class holding text and data from each website"""
+    
 
     def __str__(self):
         attrDict = str(self.__dict__)

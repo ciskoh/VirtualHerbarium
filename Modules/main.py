@@ -4,10 +4,10 @@
 """main module calling all other operations to build a VirtualHerbarium"""
 
 # ----------Settings
-import wikipediaapi as wiki
 import csv
 from utils import *
 from collections import OrderedDict
+from wikiScraping import *
 # import sys
 # sys.path.append('/usr/local/lib/python3.6/dist-packages')
 # print(" \n %s" % (sys.path))
@@ -15,7 +15,7 @@ from collections import OrderedDict
 # ---------Parameters
 inputPath = '/home/matt/Dropbox/github/VirtualHerbarium/Tests/TestInputFile.csv'
 # get input from csv file
-inputDicList=fn.getInputAsDictionary(inputPath, colName=colName)
+inputDicList=getInputAsDictionary(inputPath, colName=colName)
 plantObjList=[ Plant(i) for i in inputDicList]
 # [i.__str__() for i in plantObjList]
 
@@ -27,8 +27,9 @@ plantObjList=[ Plant(i) for i in inputDicList]
 currentPlant = plantObjList[1]
 
 # webscrapeWikipedia
-wikiText = TextContainer('wikipedia', currentPlant.name,  )
-print(wikiText)
+currentPlantWiki=wikiTextContainer("wikipedia", currentPlant.name, wikiSectionTitles )
+currentPlantWiki.webscrapeWikipedia()
+
 
 # get wikipedia page
 def checkBeforeScraping(wikiText):

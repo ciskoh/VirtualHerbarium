@@ -6,6 +6,7 @@ from collections import OrderedDict
 import datetime
 import wikipediaapi as wiki
 
+
 #------------------Settings
 
 # General Settings
@@ -75,11 +76,9 @@ class TextContainer:
         self.plantName = plantName
         if sections:
             self.sectionTitles = sections
-            self.sectionContents = [
-                str(i) + ": content not yet set!" for i in sections]
         else:
-            self.sectionTitles = None
-            self.sectionContents = None
+            self.sectionTitles = wikiSectionTitles
+        self.sectionContents = [ str(i) + ": content not yet set!" for i in sections]
 
     def __str__(self):
         attrDict = str(self.__dict__)
@@ -104,7 +103,5 @@ if __name__ == "__main__":
     tSecs = ["aa", "bb", "cc"]
     test3 = TextContainer("wikipedia", "Lablab purpureus", tSecs)
     test3.__dict__
-    plantName="dddurpureus"
-    test3.webscrapeWikipedia()
     print(test3.wikiPage)
     self=test3

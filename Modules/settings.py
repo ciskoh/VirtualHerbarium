@@ -10,3 +10,7 @@ colName = 'PlantName'
 
 # wikipedia Settings
 wikiTitles = ["Summary", "Description", "Uses"]
+
+# flora online SETTINGS
+
+floraTitles = ["general", "habit", "morphology"]

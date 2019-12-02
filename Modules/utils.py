@@ -22,6 +22,11 @@ outputPath="/tmp"
 wikiSectionTitles = ["Summary", "Description", "Uses"]
 
 attrList = ["journalName", "plantName", "sectionTitles"]
+
+# flora online SETTINGS
+# section titles to scrape AS SINGLE STRING
+floraTitles = "general, habit, morphology"
+
 #------------------functions
 
 def getInputAsDictionary(inputPath, colName=colName):

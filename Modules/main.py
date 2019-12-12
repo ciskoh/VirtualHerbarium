@@ -27,7 +27,7 @@ plantObjList=[ Plant(i) for i in inputDicList]
 currentPlant = plantObjList[1]
 
 # webscrapeWikipedia
-currentPlantWiki=wikiTextContainer("wikipedia", currentPlant.name, wikiSectionTitles )
+currentPlantWiki=wikiScraper("wikipedia", currentPlant.name, wikiSectionTitles )
 currentPlantWiki.webscrapeWikipedia()
 
 

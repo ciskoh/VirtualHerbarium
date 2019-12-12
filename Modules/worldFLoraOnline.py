@@ -4,15 +4,43 @@
 
 """ Module to scrape World Flora online"""
 
-#------------------SETTINGS
-import scrapy
+# ------------------SETTINGS
+from utils import Scraper
+from utils import floraTitles
+from utils import outputFold
+from utils import pathToScrapySpider
 
-import scrapy
-from scrapy.crawler import CrawlerProcess
+import os
+
+# ---------------CLASSES
 
 
+class floraScraper(Scraper):
+    """class holding input variables and retrieving
+    results from World FLora Online using scrapy through command line"""
 
-#---------------CLASSES
+    pathToScrapySpider = pathToScrapySpider
+
+    def test(self):
+        print(self.name)
+
+    def createScrapyCall(self):
+        self.createOutputPath()
+        stringStart = f'scrapy runspider {pathToScrapySpider} '
+        string1 = f'-a plantName="{self.plantName}" '
+        string2 = f'-a tempFileDump="{self.outputPath}" '
+        string3 = f'-a titles="{floraTitles}"'
+
+        spyderCall=stringStart+string1+string2+string3
+        print(spyderCall)
+        # os.system(spyderCall)
+
+    def createOutputPath(self, baseFolder=outputFold):
+        token = str(self.timeStamp)
+        pn = self.plantName.replace(" ", "-")
+        path = os.path.join(baseFolder, "VirtHerb" + token, pn)
+        os.makedirs(path, mode=0o777, exist_ok=True)
+        self.outputPath = os.path.join(path, "flora.xml")
 
 
 # -------------FUNCTIONS--------------
@@ -28,28 +56,12 @@ from scrapy.crawler import CrawlerProcess
 # run spyder
 
 # collect response
-help(scrapy.Spider
-help(type(scrapy))
+if __name__ == "__main__":
 
-if __name__ = "__main__":
+    # test class name
+    a = floraScraper(journalName="flora", plantName="Parthenium hysterophorus")
+    b = a.timeStamp
+    str(object=b)
+    a.createOutputPath()
+    a.createScrapyCall()
     # call spyder with command line
-    string="scrapy crawl flora -a "
-    # call spyder inside python
-
-    # plantName  = "lablab"
-    # test = FloraSpider(name=plantName)
-    #
-    # process = CrawlerProcess(settings={
-    #     'FEED_FORMAT': 'json',
-    #     'FEED_URI': 'items.json'
-    # })
-    #
-    # process.crawl(test)
-    # process.start()
-    # dir(process)
-    # testRequest = scrapy.http.Request(url="http://www.worldfloraonline.org/",
-    #                            cookies={'query': plantName})
-    # r=test.crawler()
-    # print(r.
-    # test.parse(response)
-    # dir(testRequest)

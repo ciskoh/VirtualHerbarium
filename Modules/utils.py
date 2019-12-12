@@ -15,7 +15,7 @@ inputPath = '/home/matt/Dropbox/github/VirtualHerbarium/Tests/TestInputFile.csv'
     # column in input file holding plant names
 colName = 'PlantName'
     # output folder path
-outputPath="/tmp"
+outputFold="/tmp"
 
 # wikipedia Settings
     # section titles to scrape
@@ -24,8 +24,11 @@ wikiSectionTitles = ["Summary", "Description", "Uses"]
 attrList = ["journalName", "plantName", "sectionTitles"]
 
 # flora online SETTINGS
-# section titles to scrape AS SINGLE STRING
+# section titles to scrape AS **SINGLE STRING**
 floraTitles = "general, habit, morphology"
+
+pathToScrapySpider = "./spiders/floraSpyder.py"
+
 
 #------------------functions
 
@@ -72,22 +75,20 @@ class Plant:
         return f'plant object named {self.name} with the following attributes {attrDict}'
 
 
-class TextContainer:
-    """class holding text and data from each website"""
+class Scraper:
+    """high level class to retrieve data from each website and hold the results"""
 
-    def __init__(self, journalName=None, plantName=None, sections=None):
+    def __init__(self, journalName=None, plantName=None, sections="Titles not set yet"):
         self.date = datetime.datetime.now()
+        self.timeStamp=int(self.date.timestamp())
         self.journalName = journalName
         self.plantName = plantName
-        if sections:
-            self.sectionTitles = sections
-        else:
-            self.sectionTitles = wikiSectionTitles
+        self.sectionTitles = sections
         self.sectionContents = [ str(i) + ": content not yet set!" for i in sections]
 
     def __str__(self):
         attrDict = str(self.__dict__)
-        return f'TextContainer object named {self.journalName} with the following attributes {attrDict}'
+        return f'Scraper object named {self.journalName} with the following attributes {attrDict}'
 
     def checkForMainAttr(self, attrList=attrList):
         """checks for main attributes before scraping webpage"""
@@ -104,9 +105,9 @@ if __name__ == "__main__":
     tDic = {"rer": "balbla", "der": 2}
     print("test with object from dict " + Plant(tDic).__str__())
     print("test with no inputs " + Plant().__str__())
-    # class TextContainer
+    # class Scraper
     tSecs = ["aa", "bb", "cc"]
-    test3 = TextContainer("wikipedia", "Lablab purpureus", tSecs)
+    test3 = Scraper("wikipedia", "Lablab purpureus", tSecs)
+    a=int(test3.date.timestamp())
     test3.__dict__
-    print(test3.wikiPage)
     self=test3

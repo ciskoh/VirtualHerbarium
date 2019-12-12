@@ -1,19 +1,18 @@
 """ Module to scrape wikipedia using wikipedia wikipediaapi"""
 
-from utils import TextContainer
+from utils import Scraper
 from utils import wikiSectionTitles
 import wikipediaapi as wiki
 
 
 # ------------------Classes
 
-class wikiTextContainer(TextContainer):
-    """class holding text and data from each website"""
-    
+class wikiScraper(Scraper):
+    """class holding input variables and retrieving results from wikipedia"""
 
     def __str__(self):
         attrDict = str(self.__dict__)
-        return f'wiki TextContainer object named {self.journalName} with the following attributes {attrDict}'
+        return f'wiki Scraper object named {self.journalName} with the following attributes {attrDict}'
 
     def webscrapeWikipedia(self):
         """wrapping function to scrape wikipedia"""
@@ -50,7 +49,7 @@ class wikiTextContainer(TextContainer):
         return dic
 
 if __name__ == "__main__":
-    test = wikiTextContainer("wikipedia", 'Parthenium', wikiSectionTitles)
+    test = wikiScraper("wikipedia", 'Parthenium', wikiSectionTitles)
     print(test.__dict__)
     test.webscrapeWikipedia()
     print(test.sectionContents)

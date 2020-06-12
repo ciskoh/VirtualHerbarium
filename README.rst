@@ -1,4 +1,7 @@
 =================================================================================
- README file for this project written in reStructuredText
+Virtual Herbarium - a simple webscrpaer to collect infomration on plants from online databases
 =================================================================================
-``for reStructuredText refrence see http://docutils.sourceforge.net/docs/user/rst/quickref.html``
+
+Currently scraps:  CABI Invasive species compendium https://www.cabi.org/ISC
+                   World Flora Online http://www.worldfloraonline.org/
+                   JSTOR Global Plants https://plants.jstor.org/

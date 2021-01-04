@@ -3,7 +3,7 @@ Virtual Herbarium - a simple webscraper to collect information on plants from on
 =================================================================================
 Created by Dr. Matteo Jucker Riva, BFH-HAFL Bern University of Applied Sciences (Switzerland) matteo.jucker@bfh.ch 
 
-## Intro
+## Intro   
 information about plants, especially wild species, are scattered across multiple sources and websites, providing unstructured information in different ways and templates. The aim of this project is to collect information about plants  by scraping different databases and web sources and combine it in a structured way. 
 
 VirtHerb currently scrapes:  

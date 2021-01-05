@@ -1,7 +1,20 @@
 #! /usr/bin/env python3
-
+"""VirtualHerbarium scrapes the web for information about plants and outputs them in a nice pdf page
+made by dr. Matteo Jucker Riva, Geography and PhD and data scientist
+"""
 # -*- coding: utf-8 -*-
-"""main module calling all other operations to build a VirtualHerbarium"""
+"""main module calling all other operations to build a VirtualHerbarium
+Operations are: 
+1. create or check output folder
+2. import plant list name
+3. scrape data about plant name from the following websites:
+    3.1 Wikipedia
+    3.2 World Flore Online
+    3.3 CABI repository of invasive plants
+    3.4 JSTOR (maybe)
+
+NOTES: This is the simplified version, no OOP no spyders, no shenanigans
+"""
 
 # ----------Settings
 import csv
@@ -21,7 +34,6 @@ plantObjList=[ Plant(i) for i in inputDicList]
 
 #     lineCount = 0
 #     # get list of plant names
-
 
 # just for testing
 currentPlant = plantObjList[1]

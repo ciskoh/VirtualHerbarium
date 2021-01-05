@@ -8,7 +8,7 @@ import xml.etree.ElementTree as ET
 
 class cabiSpider(scrapy.Spider):
     name = 'cabi'
-    allowed_domains = ['https://www.cabi.org']
+    # allowed_domains = ['https://www.cabi.org']
     BASE_URL = 'https://www.cabi.org/isc/'
     searchPrefix = 'search/index?q='
     outputStr = "nothing here"
@@ -35,35 +35,44 @@ class cabiSpider(scrapy.Spider):
             cleanName = name.strip()
             if self.plantName in cleanName and "datasheet" in link:
                 # cleanName=cleanName+"  YES!!!"            # cleanName = " ".join(cleanName)
-                self.printToFile(cleanName + "\n")
+                # self.printToFile(cleanName + "\n")
                 url=self.BASE_URL+link
-                self.printToFile(url)
-                yield scrapy.Request(url=self.BASE_URL+link, callback=self.parse2)
+                # self.printToFile(url)
+                yield scrapy.Request(url=url, callback=self.parse2)
 
     def parse2(self, response):
-        """access the actual plant page and prints the paragraph in
-        the tempFileDump"""
-        outputStr2 = '\n'
+        """access the actual plant page and prints the paragraph in the tempFileDump"""
+        self.printToFile(" ".join(self.titles))
+            ###TODO: section Titles are on h3. p should be the wikiText
+            # usefull section titles:
+            # Summary of invasiveness
+            # Means of Movement and Dispersal
+            # Prevention and Control
+            # Uses
+        # outputStr2 = '\n'
         for sectionTitle in self.titles:
             # get desired sections
             # desired number of getLongestParagraphs
             parNum = 3
             xpath = f'//*[(@id = "{sectionTitle}")]'
             outputList = response.xpath(xpath).css('div p::text').getall()
-            sortedList = sorted(outputList, key=len)
-            try:
-                shortList = sortedList[-parNum:-1]
-            except TypeError:
-                shortList = sortedList
-
-            # translate 2 xml
-            section = ET.SubElement(self.outputXML, 'section', {
-                                    'name': sectionTitle})
-            outputPars = shortList
-            for i in outputPars:
-                ET.SubElement(section, 'paragraph', {'text': i})
-        # print to file
-        ET.ElementTree(element=self.outputXML).write(self.tempFileDump)
+            string1 = outputList
+            # string1=string1
+            self.printToFile(string1, accessMode="w+")
+        #     sortedList = sorted(outputList, key=len)
+        #     try:
+        #         shortList = sortedList[-parNum:-1]
+        #     except TypeError:
+        #         shortList = sortedList
+        #
+        #     # translate 2 xml
+        #     section = ET.SubElement(self.outputXML, 'section', {
+        #                             'name': sectionTitle})
+        #     outputPars = shortList
+        #     for i in outputPars:
+        #         ET.SubElement(section, 'paragraph', {'text': i})
+        # # print to file
+        # ET.ElementTree(element=self.outputXML).write(self.tempFileDump)
 
     def printToFile(self, string, accessMode="a"):  # access a for append, w+ for writing
         """prints to desired file xml or txt"""

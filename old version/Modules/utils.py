@@ -29,6 +29,8 @@ floraTitles = "general, habit, morphology"
 
 pathToScrapySpider = "./spiders/floraSpyder.py"
 
+# cabi invasive sepecies compendium
+cabiTitles="Summary of invasiveness, Means of Movement and Dispersal, Prevention and Control, Uses"
 
 #------------------functions
 

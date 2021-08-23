@@ -29,7 +29,7 @@ json5 @ file:///home/conda/feedstock_root/build_artifacts/json5_1600692310011/wo
 jsonschema @ file:///home/conda/feedstock_root/build_artifacts/jsonschema_1602551949684/work
 jupyter-client @ file:///home/conda/feedstock_root/build_artifacts/jupyter_client_1598486169312/work
 jupyter-core @ file:///home/conda/feedstock_root/build_artifacts/jupyter_core_1605735002943/work
-jupyterlab==2.2.9
+jupyterlab==2.2.10
 jupyterlab-pygments @ file:///home/conda/feedstock_root/build_artifacts/jupyterlab_pygments_1601375948261/work
 jupyterlab-server @ file:///home/conda/feedstock_root/build_artifacts/jupyterlab_server_1593951277307/work
 MarkupSafe @ file:///home/conda/feedstock_root/build_artifacts/markupsafe_1602267314832/work
